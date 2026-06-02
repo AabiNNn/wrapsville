@@ -1,3 +1,5 @@
+var TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // cart: { "hot-classic-ori": 2, "hot-classic-1": 1, ... }
@@ -6,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let sauceFee = 0;
     let sauceQty = 0;
     let totalItemsCount = 0;
-
-    const TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";
 
     const form            = document.getElementById("orderForm");
     const totalPesananEl  = document.getElementById("totalPesanan");
