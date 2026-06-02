@@ -1,0 +1,612 @@
+/* Reset & Basic Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ed0100;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+/* Logo default untuk desktop */
+.wrapsville-logo {
+    display: block;
+    width: 100px;  /* ukuran desktop */
+    margin: 0 auto 12px auto;
+}
+
+/* Navbar full-width kuning */
+.navbar {
+    width: 100%;
+    background-color: white; /* kuning */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center container tengah */
+    padding: 10px 15px;
+    position: relative; /* untuk back absolute */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tombol back di kiri navbar, merah, tanpa box */
+.navbar-back {
+    position: absolute;
+    left: 15px;
+    color: #ed0100;
+    font-size: 3rem; 
+    text-decoration: none;
+}
+
+/* Container untuk logo + tulisan di tengah */
+.navbar-center {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+/* Logo navbar diperbesar */
+.navbar-logo {
+    width: 60px; /* diperbesar */
+    height: auto;
+}
+
+/* Tulisan wrapsville sebagai gambar */
+.navbar-title-logo {
+    width: 140px; /* diperbesar */
+    height: auto;
+}
+
+/* Responsive mobile */
+@media (max-width: 480px) {
+    .navbar-logo { width: 40px; }
+    .navbar-title-logo { width: 100px; }
+
+    .navbar-back { font-size: 2rem; }
+
+    h1 { font-size: 1.4rem; }
+
+    .order-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .total-harga { order: 2; }
+    .total-item { order: 1; }
+}
+
+
+h2 {
+    font-size: 1.4rem;
+    color: #333;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="file"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #d9534f;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.1);
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+#previewBukti {
+    display: none;
+    max-width: 200px;
+    margin-top: 12px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.menu-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Header: judul di kiri, gambar di kanan */
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.price {
+  color: #ed0100;
+  font-weight: 700;
+  margin: 4px 0 10px;
+}
+
+/* gambar diperbesar */
+.menu-icon {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* LEVEL PEDAS */
+.level-pilih small {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.level-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.level-btn {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.level-btn.active {
+  background: #ed0100;
+  color: #fff;
+  border-color: #ed0100;
+}
+
+/* JUMLAH */
+.quantity-control {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quantity-control small {
+  font-weight: 600;
+  color: #555;
+}
+
+/* tombol + - di kanan */
+.quantity-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quantity-btn[data-action="decrease"] {
+  background: #f2f2f2;
+}
+
+.quantity-btn[data-action="increase"] {
+  background: #ed0100;
+  color: white;
+}
+
+.quantity-display {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+/* Summary & Submit */
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 2px solid #f0f0f0;
+    font-size: 1.2rem;
+}
+
+.total-harga span {
+    color: #ed0100;
+    font-weight: 700;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 480px) {
+    .order-summary {
+        flex-direction: column;  /* ubah dari row ke column */
+        align-items: flex-start; /* optional, biar kiri rata */
+        gap: 10px;               /* jarak antar elemen */
+    }
+
+    .total-item,
+    .total-harga {
+        font-size: 1.1rem;
+    }
+
+    .total-harga {
+        order: 2;  /* pastikan Total Harga di bawah Total Pesanan */
+    }
+
+    .total-item {
+        order: 1;  /* Total Pesanan tetap di atas */
+    }
+}
+
+#submitButton {
+    width: 100%;
+    padding: 15px;
+    background-color: #ed0100;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+/* Status Message */
+#statusMessage {
+    display: none;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#statusMessage.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+#statusMessage.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+#statusMessage.loading {
+    background-color: #d9edf7;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+}
+
+/* Style untuk input yang kosong saat validasi gagal */
+.input-error {
+    border: 2px solid #e74c3c !important; /* Garis merah yang tebal */
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5); /* Bayangan merah */
+}
+
+/* Pastikan semua input default tidak terlalu tebal */
+input, textarea {
+    border: 1px solid #ccc;
+    /* Tambahkan transisi agar perubahan warna terlihat mulus */
+    transition: border-color 0.3s, box-shadow 0.3s; 
+}
+
+/* QRIS Payment */
+.qris-payment {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qris-img {
+    max-width: 200px; /* sesuaikan ukuran */
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+}
+
+.qris-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Perbesar gambar Hot Classic saja */
+.menu-item[data-item-id="hot-classic"] .menu-icon {
+    width: 112px; /* sesuaikan ukuran */
+    height: auto; /* jaga proporsinya */
+    border-radius: 12px; /* opsional */
+    transition: transform 0.3s;
+    margin-right: -10px;
+}
+
+.menu-item[data-item-id="hot-classic"] .menu-icon:hover {
+    transform: scale(1.05); /* efek hover opsional */
+}
+
+
+/* Status message sukses diperbesar */
+#statusMessage.success {
+    font-size: 1.1rem;
+    padding: 20px 16px;
+    line-height: 1.6;
+}
+
+/* Submit button disabled state */
+#submitButton:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ===== Delivery Options ===== */
+.delivery-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.delivery-option {
+    cursor: pointer;
+    display: block;
+}
+
+.delivery-option input[type="radio"] {
+    display: none; /* sembunyikan radio default */
+}
+
+.delivery-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.delivery-option input[type="radio"]:checked + .delivery-card {
+    border-color: #ed0100;
+    background: #fff5f5;
+}
+
+.delivery-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.delivery-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.delivery-info strong {
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.delivery-info small {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+.delivery-fee {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ed0100;
+    flex-shrink: 0;
+    text-align: right;
+}
+/* delivery-error: highlight semua card + tampilkan pesan di bawah */
+.delivery-options.delivery-error .delivery-card {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.25);
+}
+
+.delivery-options.delivery-error::after {
+    content: "⚠️ Pilih opsi pengiriman terlebih dahulu";
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+/* ===== Additional Sauce ===== */
+.sauce-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sauce-label {
+    cursor: pointer;
+    display: block;
+}
+
+.sauce-label input[type="checkbox"] {
+    display: none;
+}
+
+.sauce-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.sauce-label input[type="checkbox"]:checked + .sauce-card {
+    border-color: #ed0100;
+    background: #fff5f5;
+}
+
+.sauce-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sauce-info strong {
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.sauce-info small {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+.sauce-fee {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ed0100;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+/* ===== Level selector (tombol tambah level) ===== */
+.level-selector {
+  margin-top: 12px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+}
+
+.level-selector small {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+}
+
+/* Tombol level yang sudah dipilih (disabled) */
+.level-btn:disabled {
+  background: #ed0100;
+  color: #fff;
+  border-color: #ed0100;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== Baris level yang muncul setelah dipilih ===== */
+.level-rows {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff8f8;
+  border: 1px solid #f5c0c0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  gap: 12px;
+  animation: fadeSlideIn 0.2s ease;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.level-row-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #ed0100;
+  min-width: 60px;
+}
+
+.level-row-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Tombol hapus baris (×) */
+.remove-row-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #bbb;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.remove-row-btn:hover {
+  color: #ed0100;
+}

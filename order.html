@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Wrapsville</title>
+    <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+
+ <div class="container">
+  <div class="navbar">
+    <a href="index.html" class="navbar-back">&lt;</a>
+    <div class="navbar-center">
+        <img src="images/logowrapsville.png" alt="Wrapsville Logo" class="navbar-logo">
+        <img src="images/wrapsville.png" alt="Wrapsville Text Logo" class="navbar-title-logo">
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="stockCheckOverlay" style="
+    position: fixed; inset: 0;
+    background: #ed0100;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 999;
+    flex-direction: column; gap: 16px;
+    color: #fff; font-family: sans-serif; font-size: 1rem;
+  ">
+    <span style="font-size:2.5rem;">🌯</span>
+    <span>Mengecek ketersediaan stok...</span>
+  </div>
+
+  <form id="orderForm"
+    action="https://script.google.com/macros/s/AKfycbzBqWU7spOL31my0ROqSWTarMoMgpCQ7haizrspg-ElJJTNRXDiHo2dpgrQh9AcB3wb/exec">
+
+    <h2>Info Pemesanan</h2>
+    <div class="form-group">
+        <label for="nama">Nama Pemesan</label>
+        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+    </div>
+    <div class="form-group">
+        <label for="whatsapp">Nomor WhatsApp</label>
+        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+    </div>
+    <div class="form-group">
+        <label for="alamat">Alamat (keterangan: Masukkan titik maps alamat)</label>
+        <input type="text" id="alamat" placeholder="Masukan link maps alamat kamu" required>
+    </div>
+
+    <h2>Opsi Pengiriman</h2>
+    <div class="form-group">
+        <div class="delivery-options">
+            <label class="delivery-option" data-fee="4000">
+                <input type="radio" name="opsiPengiriman" value="Deliv by Wraps" required>
+                <div class="delivery-card">
+                    <div class="delivery-info">
+                        <strong>Deliv by Wraps</strong>
+                        <small>Jarak maks. 4km dari Unair Kampus C</small>
+                    </div>
+                    <span class="delivery-fee">+Rp 4.000</span>
+                </div>
+            </label>
+            <label class="delivery-option" data-fee="0">
+                <input type="radio" name="opsiPengiriman" value="Ojek Online">
+                <div class="delivery-card">
+                    <div class="delivery-info">
+                        <strong>Ojek Online</strong>
+                        <small>Jarak lebih dari 4km dari Unair Kampus C</small>
+                    </div>
+                    <span class="delivery-fee">Atur sendiri</span>
+                </div>
+            </label>
+            <label class="delivery-option" data-fee="0">
+                <input type="radio" name="opsiPengiriman" value="Ambil Sendiri">
+                <div class="delivery-card">
+                    <div class="delivery-info">
+                        <strong>Ambil Sendiri</strong>
+                        <small>Di Unair Kampus C</small>
+                    </div>
+                    <span class="delivery-fee">Gratis</span>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <h2>Pilih Menu</h2>
+
+    <div class="menu-item" data-item-id="hot-classic" data-price="30000">
+      <div class="menu-card">
+        <div class="item-header">
+          <div class="item-info">
+            <h3>Hot Classic</h3>
+            <p class="description">Classic Chicken Nashville Wrap-up in Tortilla</p>
+            <p class="price">Rp 30.000</p>
+          </div>
+          <img src="images/hc.png" alt="Hot Classic" class="menu-icon">
+        </div>
+        <!-- Tombol level: klik untuk tambah baris -->
+        <div class="level-selector">
+          <small>Tambah level:</small>
+          <div class="level-buttons">
+            <button type="button" class="level-btn" data-level="ori">Ori</button>
+            <button type="button" class="level-btn" data-level="1">1</button>
+            <button type="button" class="level-btn" data-level="2">2</button>
+            <button type="button" class="level-btn" data-level="3">3</button>
+          </div>
+        </div>
+        <!-- Baris level yang dipilih user muncul di sini -->
+        <div class="level-rows"></div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-item-id="hot-slaw" data-price="25000">
+      <div class="menu-card">
+        <div class="item-header">
+          <div class="item-info">
+            <h3>Hot Slaw</h3>
+            <p class="description">Mixed Chicken Nashville & Coleslaw Wrap-up in Tortilla</p>
+            <p class="price">Rp 25.000</p>
+          </div>
+          <img src="images/hs.png" alt="Hot Slaw" class="menu-icon">
+        </div>
+        <div class="level-selector">
+          <small>Tambah level:</small>
+          <div class="level-buttons">
+            <button type="button" class="level-btn" data-level="ori">Ori</button>
+            <button type="button" class="level-btn" data-level="1">1</button>
+            <button type="button" class="level-btn" data-level="2">2</button>
+            <button type="button" class="level-btn" data-level="3">3</button>
+          </div>
+        </div>
+        <div class="level-rows"></div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-item-id="hot-n-fries" data-price="30000">
+      <div class="menu-card">
+        <div class="item-header">
+          <div class="item-info">
+            <h3>Hot N Fries</h3>
+            <p class="description">Nashville Chicken served with Crispy Fries</p>
+            <p class="price">Rp 30.000</p>
+          </div>
+          <img src="images/hnf.png" alt="Hot N Fries" class="menu-icon">
+        </div>
+        <div class="level-selector">
+          <small>Tambah level:</small>
+          <div class="level-buttons">
+            <button type="button" class="level-btn" data-level="ori">Ori</button>
+            <button type="button" class="level-btn" data-level="1">1</button>
+            <button type="button" class="level-btn" data-level="2">2</button>
+            <button type="button" class="level-btn" data-level="3">3</button>
+          </div>
+        </div>
+        <div class="level-rows"></div>
+      </div>
+    </div>
+
+    <h2>Additional Sauce</h2>
+    <div class="form-group">
+      <div class="menu-card">
+        <div class="item-header">
+          <div class="item-info">
+            <h3>Additional Sauce</h3>
+            <p class="description">Extra saus untuk menemani pesananmu</p>
+            <p class="price">Rp 3.000</p>
+          </div>
+        </div>
+        <div class="item-controls">
+          <div class="quantity-control">
+            <small>Jumlah</small>
+            <div class="quantity-box">
+              <button type="button" class="quantity-btn" id="sauceDecrease" data-action="decrease">-</button>
+              <span class="quantity-display" id="sauceQtyDisplay">0</span>
+              <button type="button" class="quantity-btn" id="sauceIncrease" data-action="increase">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Catatan Tambahan</h2>
+    <div class="form-group">
+        <label for="catatan">Catatan (opsional)</label>
+        <textarea id="catatan" rows="3" placeholder="Catatan khusus untuk pesanan Anda"></textarea>
+    </div>
+
+    <h2>QRIS Pembayaran</h2>
+    <div class="form-group qris-payment">
+        <img src="images/qris.jpeg" alt="QRIS Pembayaran" class="qris-img">
+        <p class="qris-name">A.n Adnan Nabil</p>
+    </div>
+
+    <h2>Upload Bukti Transfer</h2>
+    <div class="form-group">
+        <label for="buktiTransfer">File Bukti Transfer (WAJIB)</label>
+        <input type="file" id="buktiTransfer" accept="image/*" required>
+        <img id="previewBukti" src="" alt="Preview Bukti Transfer">
+    </div>
+
+    <div class="order-summary">
+        <div class="total-item">
+            <strong>Total Pesanan:</strong>
+            <span id="totalPesanan">0 pcs</span>
+        </div>
+        <div class="total-harga">
+            <strong>Total Harga:</strong>
+            <span id="totalHarga">Rp 0</span>
+        </div>
+    </div>
+
+    <div id="statusMessage"></div>
+
+    <!-- Hidden fields -->
+    <input type="hidden" name="timestamp"      id="timestampInput">
+    <input type="hidden" name="nama"           id="namaInput">
+    <input type="hidden" name="whatsapp"       id="whatsappInput">
+    <input type="hidden" name="alamat"         id="alamatInput">
+    <input type="hidden" name="catatan"        id="catatanInput">
+    <input type="hidden" name="opsiPengiriman" id="opsiPengirimanInput">
+
+    <input type="hidden" name="hotClassicOri"  id="hotClassicOriInput"  value="0">
+    <input type="hidden" name="hotClassicLvl1" id="hotClassicLvl1Input" value="0">
+    <input type="hidden" name="hotClassicLvl2" id="hotClassicLvl2Input" value="0">
+    <input type="hidden" name="hotClassicLvl3" id="hotClassicLvl3Input" value="0">
+
+    <input type="hidden" name="hotSlawOri"     id="hotSlawOriInput"     value="0">
+    <input type="hidden" name="hotSlawLvl1"    id="hotSlawLvl1Input"    value="0">
+    <input type="hidden" name="hotSlawLvl2"    id="hotSlawLvl2Input"    value="0">
+    <input type="hidden" name="hotSlawLvl3"    id="hotSlawLvl3Input"    value="0">
+
+    <input type="hidden" name="hotNFriesOri"   id="hotNFriesOriInput"   value="0">
+    <input type="hidden" name="hotNFriesLvl1"  id="hotNFriesLvl1Input"  value="0">
+    <input type="hidden" name="hotNFriesLvl2"  id="hotNFriesLvl2Input"  value="0">
+    <input type="hidden" name="hotNFriesLvl3"  id="hotNFriesLvl3Input"  value="0">
+    <input type="hidden" name="additionalSauceQty" id="additionalSauceQtyInput" value="0">
+
+    <input type="hidden" name="totalPesanan"   id="totalPesananInput"   value="0">
+    <input type="hidden" name="totalHarga"     id="totalHargaInput"     value="Rp 0">
+
+    <button type="submit" id="submitButton">Kirim Pesanan</button>
+
+  </form>
+ </div>
+
+ <script src="js/scriptorder.js"></script>
+
+  <script>
+    (function() {
+      var APPS_SCRIPT_URL = document.getElementById("orderForm").action;
+      var TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";
+      function checkStock() {
+        fetch(APPS_SCRIPT_URL + "?token=" + encodeURIComponent(TOKEN))
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            var overlay = document.getElementById("stockCheckOverlay");
+            if (overlay) overlay.style.display = "none";
+            if (data.status === "closed") window.location.href = "closed.html";
+          })
+          .catch(function() {
+            var overlay = document.getElementById("stockCheckOverlay");
+            if (overlay) overlay.style.display = "none";
+          });
+      }
+      checkStock();
+      setInterval(checkStock, 30000);
+    })();
+  </script>
+</body>
+</html>

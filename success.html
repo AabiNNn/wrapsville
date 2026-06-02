@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesanan Berhasil - Wrapsville</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .success-section {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      display: block;
+      animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes bounceIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .success-section h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .success-section .subtitle {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.92;
+      margin-bottom: 16px;
+    }
+
+    .success-section .tagline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 4px;
+      margin-bottom: 32px;
+    }
+
+    /* Order Card */
+    .order-card {
+      background: #fff;
+      color: #333;
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 24px;
+    }
+
+    .order-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ed0100;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f5f5f5;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 0.92rem;
+      gap: 12px;
+    }
+
+    .order-row:last-child { border-bottom: none; }
+
+    .order-row .label {
+      color: #999;
+      flex-shrink: 0;
+      min-width: 80px;
+    }
+
+    .order-row .value {
+      font-weight: 600;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .order-divider {
+      border: none;
+      border-top: 2px dashed #f0f0f0;
+      margin: 10px 0;
+    }
+
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .order-total .value { color: #ed0100; }
+
+    /* Menu list */
+    .menu-list { width: 100%; margin-top: 6px; }
+
+    .menu-list-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding: 5px 0;
+      color: #444;
+      border-bottom: 1px dotted #f0f0f0;
+    }
+
+    .menu-list-item:last-child { border-bottom: none; }
+
+    .no-data { color: #bbb; font-style: italic; font-size: 0.88rem; }
+
+    /* Tombol */
+    .btn-home {
+      display: inline-block;
+      padding: 14px 36px;
+      background-color: #fff;
+      color: #ed0100;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 10px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-home:hover {
+      background-color: #c00;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="images/logowrapsville.png" alt="Wrapsville Logo" class="logo">
+        <img src="images/wrapsville.png" alt="Wrapsville Text" class="logo-text">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="order.html">ORDER</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="success-section">
+
+      <h1>Makasih sudah order<br>di Wrapsville!</h1>
+
+      <p class="tagline">Wrap Your Hunger, Burn Your Taste ❤️‍🔥</p>
+
+      <div class="order-card">
+        <h2>Ringkasan Pesanan</h2>
+
+        <div class="order-row">
+          <span class="label">Nama</span>
+          <span class="value" id="sumNama">-</span>
+        </div>
+        <div class="order-row">
+          <span class="label">WhatsApp</span>
+          <span class="value" id="sumWa">-</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Alamat</span>
+          <span class="value" id="sumAlamat">-</span>
+        </div>
+
+        <hr class="order-divider">
+
+        <div class="order-row" style="flex-direction: column; gap: 6px;">
+          <span class="label">Menu Dipesan</span>
+          <div class="menu-list" id="sumMenu">
+            <span class="no-data">Tidak ada data menu</span>
+          </div>
+        </div>
+
+        <hr class="order-divider">
+
+        <div class="order-row">
+          <span class="label">Pengiriman</span>
+          <span class="value" id="sumPengiriman">-</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Add. Sauce</span>
+          <span class="value" id="sumSauce">-</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Catatan</span>
+          <span class="value" id="sumCatatan">Tidak ada catatan</span>
+        </div>
+
+        <div class="order-total">
+          <span>Total Harga</span>
+          <span class="value" id="sumTotal">-</span>
+        </div>
+      </div>
+
+      <p class="subtitle">
+        Detail dan update pesanan akan<br>
+        kami share via Instagram <strong>@wrapsville</strong> 🤍
+      </p>
+
+      <a href="index.html" class="btn-home">Kembali ke Beranda</a>
+
+    </section>
+  </main>
+
+  <footer>
+    <section class="contact">
+      <a href="https://www.instagram.com/wrapsville" target="_blank">
+        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+      </a>
+      <a href="https://wa.me/6281391080319" target="_blank">
+        <img src="images/whatsapp.png" alt="WhatsApp" class="social-icon">
+      </a>
+    </section>
+  </footer>
+
+  <script>
+    // Label tampilan untuk setiap menu+level
+    const menuLabels = {
+      'hot-classic-ori':  'Hot Classic – Ori',
+      'hot-classic-1':    'Hot Classic – Level 1',
+      'hot-classic-2':    'Hot Classic – Level 2',
+      'hot-classic-3':    'Hot Classic – Level 3',
+      'hot-slaw-ori':     'Hot Slaw – Ori',
+      'hot-slaw-1':       'Hot Slaw – Level 1',
+      'hot-slaw-2':       'Hot Slaw – Level 2',
+      'hot-slaw-3':       'Hot Slaw – Level 3',
+      'hot-n-fries-ori':  'Hot N Fries – Ori',
+      'hot-n-fries-1':    'Hot N Fries – Level 1',
+      'hot-n-fries-2':    'Hot N Fries – Level 2',
+      'hot-n-fries-3':    'Hot N Fries – Level 3',
+    };
+
+    // Ambil data dari sessionStorage
+    const raw = sessionStorage.getItem('wrapsvilleOrder');
+
+    if (raw) {
+      const order = JSON.parse(raw);
+
+      const set = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val !== undefined && val !== null && val !== '') el.textContent = val;
+      };
+
+      set('sumNama',   order.nama);
+      set('sumWa',     order.wa);
+      set('sumAlamat', order.alamat);
+      set('sumTotal',  order.total);
+
+      // Opsi pengiriman + ongkir
+      if (order.opsiPengiriman) {
+        const feeText = order.deliveryFee > 0 ? ` (+Rp ${order.deliveryFee.toLocaleString('id-ID')})` : '';
+        set('sumPengiriman', order.opsiPengiriman + feeText);
+      }
+
+      if (order.catatan && order.catatan.trim() !== '') {
+        set('sumCatatan', order.catatan);
+      }
+
+      // Additional Sauce
+      const sauceQty = order.additionalSauceQty || 0;
+      set('sumSauce', sauceQty > 0 ? sauceQty + ' pcs (+Rp ' + (sauceQty * 3000).toLocaleString('id-ID') + ')' : 'Tidak');
+
+      // Render daftar menu dari cart
+      const menuEl = document.getElementById('sumMenu');
+      const cartEntries = Object.entries(order.menu || {}).filter(([, qty]) => qty > 0);
+
+      if (cartEntries.length > 0) {
+        menuEl.innerHTML = cartEntries.map(([key, qty]) => {
+          const label = menuLabels[key] || key;
+          return `<div class="menu-list-item">
+            <span>${label}</span>
+            <span><strong>${qty} pcs</strong></span>
+          </div>`;
+        }).join('');
+      }
+
+      // Hapus data dari session supaya tidak muncul lagi kalau di-refresh
+      sessionStorage.removeItem('wrapsvilleOrder');
+
+    } else {
+      // Tidak ada data — mungkin akses langsung ke halaman ini
+      document.getElementById('sumNama').textContent = 'Data tidak tersedia';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesanan Ditutup - Wrapsville</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .closed-section {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 0 20px 80px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .closed-icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 20px;
+      animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes bounceIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .closed-section h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .closed-section .subtitle {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.92;
+      margin-bottom: 32px;
+    }
+
+    .sold-out-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 8px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+
+    .btn-home {
+      display: inline-block;
+      padding: 14px 36px;
+      background-color: #fff;
+      color: #ed0100;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 10px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-home:hover {
+      background-color: #c00;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="images/logowrapsville.png" alt="Wrapsville Logo" class="logo">
+        <img src="images/wrapsville.png" alt="Wrapsville Text" class="logo-text">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="closed-section">
+
+      <div class="sold-out-badge">SOLD OUT</div>
+
+      <h1>Stok hari ini<br>sudah habis!</h1>
+
+      <p class="subtitle">
+        Makasih buat semua yang udah order hari ini<br>
+        Pantau Instagram kami untuk info<br>
+        pembukaan order berikutnya.
+      </p>
+
+      <p class="subtitle">
+        Update pesanan via Instagram <strong>@wrapsville</strong> 🤍
+      </p>
+
+      <a href="index.html" class="btn-home">Kembali ke Beranda</a>
+
+    </section>
+  </main>
+
+  <footer>
+    <section class="contact">
+      <a href="https://www.instagram.com/wrapsville" target="_blank">
+        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+      </a>
+      <a href="https://wa.me/6281391080319" target="_blank">
+        <img src="images/whatsapp.png" alt="WhatsApp" class="social-icon">
+      </a>
+    </section>
+  </footer>
+
+</body>
+</html>

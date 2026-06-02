@@ -1,0 +1,543 @@
+@font-face {
+  font-family: 'beautifreak';
+  src: url('../fonts/beautifreak.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ed0100; 
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: #fff;
+  color: #d33;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Bungkus logo + tulisan */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo {
+  height: 50px;
+}
+
+.navbar .logo-text {
+  height: 25px;
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3px;
+}
+
+.navbar nav ul li a {
+  text-decoration: none;
+  color: #d33;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.navbar nav ul li a:hover {
+  background-color: #f2f2f2;
+}
+
+/* ===== Tweak Responsive Navbar (letakkan setelah definisi di atas) ===== */
+@media (min-width: 769px) {
+  .logo-wrapper { margin-left: 30px; }
+  .navbar .logo { height: 60px; }
+  .navbar .logo-text { height: 35px; }
+  .navbar nav ul { margin-right: 30px; gap: 10px; }
+  .navbar nav ul li a { font-size: 1.5rem; padding: 3px 8px; }
+}
+
+@media (max-width: 768px) {
+  .navbar nav ul { justify-content: flex-start; gap: 3px; }
+  .navbar nav ul li a { font-size: 1rem; padding: 2px 6px; }
+  .navbar .logo { height: 45px; }
+  .navbar .logo-text { height: 22px; }
+}
+
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  width: 90%;
+  text-decoration: solid;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #fff;
+  
+}
+
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 42px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .hero-text .hero-logo {
+        width: 100px; /* lebih kecil di mobile */
+        height: 100px;
+    }
+}
+
+.btn-order {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #fff;
+  color: #ed0100;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-order:hover {
+  background-color: #ed0100;
+  color: #fff;
+}
+
+/* ===== About Section ===== */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* gambar kiri, teks kanan */
+  align-items: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 20px auto; /* rapat ke hero */
+  padding: 40px 40px 20px 40px; /* padding bawah dikurangi supaya level lebih mepet */
+  color: #fff;
+  border-radius: 12px;
+}
+
+.about-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* konten mulai dari kiri */
+  align-items: flex-start;
+  gap: 0; 
+}
+
+.about-image .menu-item {
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+  flex: none; 
+}
+
+.about-image .menu-item + .menu-item {
+  margin-left: -50px; /* geser HS lebih dekat ke HC */
+}
+
+.about-image .menu-item img {
+  display: block;
+  margin: 0;
+  max-width: 220px; 
+  border-radius: 12px;
+}
+
+.about-image .menu-item:nth-child(1) img {
+  max-width: 295px; 
+}
+
+.about-image .menu-item:nth-child(2) img {
+  max-width: 250px; 
+}
+
+.about-image .menu-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* About Text */
+.about-text {
+  text-align: right; /* rata kanan di desktop */
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* ===== Level Section ===== */
+.level {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* teks kiri, gambar kanan */
+  align-items: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 40px 40px 40px; /* padding atas dikurangi supaya mepet ke about */
+  color: #fff;
+}
+
+.level-text h2 {
+  font-family: "beautifreak", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.level-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.level-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  margin: 0 auto;
+  margin-right: -100px;
+}
+
+/* ===== Responsive Mobile ===== */
+@media (max-width: 768px) {
+  .about,
+  .level {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 20px 20px;
+    margin: 20px auto;
+  }
+
+  /* About mobile: teks dulu, gambar HC & HS di bawah */
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-text {
+    order: 1;
+    margin-bottom: 20px;
+    text-align: center; /* rata tengah di mobile */
+  }
+
+  .about-image {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .about-image .menu-item img {
+    max-width: 120px; 
+  }
+
+  .about-image .menu-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .about-text h2 {
+    font-size: 2rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+
+  .level-text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .level-text p {
+    font-size: 1rem;
+    margin: 0 auto 20px;
+  }
+
+  .level-image img {
+    max-width: 100%;
+  }
+}
+
+/* About Section Scroll Horizontal Mobile */
+@media (max-width: 768px) {
+  .about-image {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* aktifkan scroll horizontal */
+    gap: 16px;
+    padding: 10px 0;
+    scroll-padding: 10px; /* jarak awal scroll */
+    -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
+    background: rgba(255,255,255,0.05); /* efek background tipis */
+    border-radius: 12px;
+  }
+
+  .about-image::-webkit-scrollbar {
+    height: 8px; /* tinggi scrollbar */
+  }
+
+  .about-image::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1); 
+    border-radius: 4px;
+  }
+
+  .about-image::-webkit-scrollbar-thumb {
+    background: #ffcd0f; /* warna merah khas Wrapsville */
+    border-radius: 4px;
+  }
+
+  .about-image .menu-item {
+    flex: 0 0 auto; /* jangan mengecil */
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
+    border-radius: 12px;
+    transition: transform 0.3s;
+  }
+
+  .about-image .menu-item:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .about-image .menu-item img {
+    max-width: 120px;
+    border-radius: 10px;
+  }
+
+  .about-image .menu-item h3 {
+    font-size: 1rem;
+    margin-top: 6px;
+  }
+}
+
+
+
+/* Floating wraps around about section */
+.floating-wraps {
+  position: absolute; 
+  top: 300px; /* sesuaikan supaya berada di posisi yang diinginkan */
+  width: 100%;
+  z-index: 1;
+}
+
+.wrap-image {
+  position: absolute;
+  top: -50px; /* naikkan gambar wrap supaya tidak bikin space kosong */
+  width: 140px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+  z-index: 1;
+}
+/* wrap kiri awal lebih bawah */
+.wrap-image.left {
+  left: 0;
+  transform: translateY(60px); /* posisi awal lebih bawah */
+}
+
+/* wrap kanan normal */
+.wrap-image.right {
+  right: 0;
+  transform: translateY(30px);
+}
+
+/* saat show, wrap kiri punya animasi float */
+.wrap-image.left.show {
+  opacity: 1;
+  transform: translateY(50px); /* posisi float relatif lebih bawah */
+  animation: float-left 4s ease-in-out infinite;
+}
+
+/* wrap kanan show tetap seperti sebelumnya */
+.wrap-image.right.show {
+  opacity: 1;
+  transform: translateY(0);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* float kiri animasi terpisah */
+@keyframes float-left {
+  0% { transform: translateY(50px); }
+  50% { transform: translateY(40px); }
+  100% { transform: translateY(50px); }
+}
+
+/* float kanan animasi lama */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Media query responsive */
+@media (max-width: 480px) {
+  .wrap-image { width: 80px; }
+  .wrap-image.left { left: 0px; }
+  .wrap-image.right { right: 0px; }
+}
+
+
+
+footer {
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #000; /* tulisan copyright tetap terlihat */
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: red;
+    border-radius: 12px 12px 0 0; /* rounded di atas */
+}
+
+footer .contact {
+    margin-bottom: 8px;
+}
+
+footer .contact a {
+    margin: 0 8px;
+    display: inline-block;
+}
+
+footer .social-icon {
+    width: 30px;  /* ukuran logo */
+    height: auto;
+    vertical-align: middle;
+    transition: transform 0.3s;
+}
+
+footer .social-icon:hover {
+    transform: scale(1.1); /* efek hover sedikit membesar */
+}
+
+
+/* Responsive text adjustments */
+@media (min-width: 768px) {
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+
+  .btn-order {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== About images swipe horizontal di Mobile ===== */
+@media (max-width: 768px) {
+  .about-image {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* bisa di-swipe horizontal */
+    justify-content: flex-start;
+    width: 100%;
+    gap: 20px;
+    padding-bottom: 10px; /* space bawah */
+    -webkit-overflow-scrolling: touch; /* smooth swipe di iOS */
+  }
+
+  .about-image .menu-item {
+    flex: 0 0 auto; /* jangan mengecil */
+    text-align: center;
+  }
+
+  .about-image .menu-item img {
+    width: auto; /* tetap sesuai ukuran sebelumnya */
+    max-width: none;
+    height: auto;
+    border-radius: 12px;
+  }
+}
+
+/* ===== Level section mobile ===== */
+@media (max-width: 768px) {
+  .level {
+    display: flex;
+    flex-direction: column; /* teks dulu, gambar di bawah */
+    align-items: center; /* center horizontal semua konten */
+    text-align: center; /* rata tengah teks */
+    padding: 20px 20px;
+    gap: 20px;
+  }
+
+
+  .level-image img {
+    width: 95vw;    /* hampir full screen */
+    height: auto;   /* tetap proporsional */
+    max-width: none;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Biar main ngisi ruang di atas footer */
+main {
+  flex: 1;
+}
