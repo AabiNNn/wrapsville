@@ -31,7 +31,7 @@
   </div>
 
   <form id="orderForm"
-    action="https://script.google.com/macros/s/AKfycbx-l0lkjOJpCBFCFPJhTDUpQ5x_dNoozXhXtScXC2KGY3kzbRTxXWOKCl_IkeYNGe06/exec">
+    action="https://script.google.com/macros/s/AKfycbwhbAVy_t8XxdismfC8uGf8TLF5yRXi_vLldrBxC6cWjTfLQF-eWWocNrWIs08BfAOY/exec">
 
     <h2>Info Pemesanan</h2>
     <div class="form-group">
@@ -249,19 +249,35 @@
     (function() {
       var APPS_SCRIPT_URL = document.getElementById("orderForm").action;
       var TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";
+      var _checkStockCallback = null;
+
+      // JSONP — inject <script> tag, hindari CORS block
+      // Apps Script return: callback({ status: "open/closed", ... })
       function checkStock() {
-        fetch(APPS_SCRIPT_URL + "?token=" + encodeURIComponent(TOKEN))
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            var overlay = document.getElementById("stockCheckOverlay");
-            if (overlay) overlay.style.display = "none";
-            if (data.status === "closed") window.location.href = "closed.html";
-          })
-          .catch(function() {
-            var overlay = document.getElementById("stockCheckOverlay");
-            if (overlay) overlay.style.display = "none";
-          });
+        // Hapus script tag JSONP sebelumnya kalau ada
+        var old = document.getElementById("jsonp-stock");
+        if (old) old.remove();
+
+        var callbackName = "wsStockCallback_" + Date.now();
+        window[callbackName] = function(data) {
+          var overlay = document.getElementById("stockCheckOverlay");
+          if (overlay) overlay.style.display = "none";
+          if (data.status === "closed") window.location.href = "closed.html";
+          delete window[callbackName];
+        };
+
+        var script = document.createElement("script");
+        script.id  = "jsonp-stock";
+        script.src = APPS_SCRIPT_URL + "?token=" + encodeURIComponent(TOKEN) + "&callback=" + callbackName;
+        script.onerror = function() {
+          // Gagal load → sembunyikan overlay saja, jangan block user
+          var overlay = document.getElementById("stockCheckOverlay");
+          if (overlay) overlay.style.display = "none";
+          delete window[callbackName];
+        };
+        document.body.appendChild(script);
       }
+
       checkStock();
       setInterval(checkStock, 30000);
     })();

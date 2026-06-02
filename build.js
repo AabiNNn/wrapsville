@@ -22,17 +22,21 @@ function copyDir(src, dest) {
 
 copyDir(__dirname, dist);
 
-// Inject token ke scriptorder.js
+// Inject token ke scriptorder.js — prepend sebagai var global
 const jsPath = path.join(dist, "js", "scriptorder.js");
 const js     = fs.readFileSync(jsPath, "utf8");
+// Jangan inject di dalam DOMContentLoaded — prepend di luar sebagai global var
 fs.writeFileSync(jsPath, `var __APPS_TOKEN__ = "${token}";\n` + js);
 
-// Inject token ke order.html (untuk checkStock)
+// Inject token ke order.html — replace placeholder di inline script
 const htmlPath = path.join(dist, "order.html");
-const html     = fs.readFileSync(htmlPath, "utf8");
-fs.writeFileSync(htmlPath, html.replace(
-  "var TOKEN = typeof __APPS_TOKEN__",
-  `var __APPS_TOKEN__ = "${token}"; var TOKEN = typeof __APPS_TOKEN__`
-));
+let html = fs.readFileSync(htmlPath, "utf8");
+// Tidak perlu inject ke HTML karena sudah pakai typeof __APPS_TOKEN__ dari scriptorder.js
+// Tapi order.html punya inline script sendiri yang juga butuh token
+html = html.replace(
+  `var TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";`,
+  `var __APPS_TOKEN__ = "${token}"; var TOKEN = __APPS_TOKEN__;`
+);
+fs.writeFileSync(htmlPath, html);
 
 console.log("Build selesai. Token:", token ? "✓ ada" : "✗ kosong (set APPS_TOKEN di Vercel)");
