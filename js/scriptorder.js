@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let sauceQty = 0;
     let totalItemsCount = 0;
 
-    const APPS_SCRIPT_URL = form.action;
     const TOKEN = typeof __APPS_TOKEN__ !== "undefined" ? __APPS_TOKEN__ : "";
+
+    const form            = document.getElementById("orderForm");
     const totalPesananEl  = document.getElementById("totalPesanan");
     const totalHargaEl    = document.getElementById("totalHarga");
     const submitButton    = document.getElementById("submitButton");
