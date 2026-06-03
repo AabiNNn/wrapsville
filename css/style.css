@@ -205,7 +205,7 @@ body {
 
 /* About Text */
 .about-text {
-  text-align: right; /* rata kanan di desktop */
+  text-align: left; /* rata kanan di desktop */
 }
 
 .about-text h2 {
