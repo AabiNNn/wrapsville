@@ -194,6 +194,12 @@ body {
   max-width: 250px; 
 }
 
+.about-image .menu-item:nth-child(3) img {
+  max-width: 295px;
+  width: 295px;
+  object-fit: contain;
+}
+
 .about-image .menu-item h3 {
   margin: 0;
   font-size: 1.1rem;
