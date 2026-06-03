@@ -165,7 +165,7 @@ body {
   flex-direction: row;
   justify-content: flex-start; /* konten mulai dari kiri */
   align-items: flex-start;
-  gap: 0; 
+  gap: 30px; 
 }
 
 .about-image .menu-item {
@@ -173,10 +173,6 @@ body {
   margin: 0; 
   padding: 0;
   flex: none; 
-}
-
-.about-image .menu-item + .menu-item {
-  margin-left: -50px; /* geser HS lebih dekat ke HC */
 }
 
 .about-image .menu-item img {
