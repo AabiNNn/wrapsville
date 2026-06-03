@@ -165,7 +165,7 @@ body {
   flex-direction: row;
   justify-content: flex-start; /* konten mulai dari kiri */
   align-items: flex-start;
-  gap: 30px; 
+  gap: 10px; 
 }
 
 .about-image .menu-item {
