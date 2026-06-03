@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setButtonLoading(isLoading) {
         submitButton.disabled    = isLoading;
-        submitButton.textContent = isLoading ? "⏳ Mengirim..." : "Kirim Pesanan";
+        submitButton.textContent = isLoading ? "Mengirim..." : "Kirim Pesanan";
         submitButton.style.opacity = isLoading ? "0.7" : "1";
         submitButton.style.cursor  = isLoading ? "not-allowed" : "pointer";
     }
@@ -275,8 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalItemsCount > 0;
 
             if (!onlyDeliveryMissing) {
-                let msg = "⚠️ Mohon lengkapi semua data sebelum mengirim pesanan.";
-                if (totalItemsCount <= 0) msg = "⚠️ Pilih minimal 1 menu dan lengkapi semua data.";
+                let msg = "Mohon lengkapi semua data sebelum mengirim pesanan.";
+                if (totalItemsCount <= 0) msg = "Pilih minimal 1 menu dan lengkapi semua data.";
                 showMessage(msg, "error");
             }
             return;
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (data.status === "closed") {
                 window.location.href = "closed.html";
             } else if (data.status === "over_limit") {
-                showMessage("⚠️ " + data.message, "error");
+                showMessage("" + data.message, "error");
                 setButtonLoading(false);
             } else {
                 throw new Error(data.message || "Server menolak pesanan.");
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (err) {
             console.error("Submit error:", err);
-            showMessage("❌ Gagal mengirim. Coba lagi atau hubungi kami via WhatsApp.", "error");
+            showMessage("Gagal mengirim. Coba lagi atau hubungi kami via WhatsApp.", "error");
             setButtonLoading(false);
         }
     }
