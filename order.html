@@ -55,7 +55,7 @@
                 <div class="delivery-card">
                     <div class="delivery-info">
                         <strong>Deliv by Wraps</strong>
-                        <small>Jarak maks. 4km dari Unair Kampus C</small>
+                        <small>Jarak maks. 4km dari Unair Kampus C · Start pengantaran jam 13.00 WIB</small>
                     </div>
                     <span class="delivery-fee">+Rp 4.000</span>
                 </div>
@@ -75,12 +75,17 @@
                 <div class="delivery-card">
                     <div class="delivery-info">
                         <strong>Ambil Sendiri</strong>
-                        <small>Di Unair Kampus C</small>
+                        <small>Di Unair Kampus C · Start pengambilan 12.00 WIB</small>
                     </div>
                     <span class="delivery-fee">Gratis</span>
                 </div>
             </label>
         </div>
+    </div>
+
+    <div class="form-group" id="kelurahanGroup" style="display:none;">
+        <label for="kelurahan">Kelurahan <span style="color:#c00; font-size:0.8rem;">*wajib diisi</span></label>
+        <input type="text" id="kelurahan" placeholder="Masukkan kelurahan Anda">
     </div>
 
     <h2>Pilih Menu</h2>
@@ -165,6 +170,7 @@
             <p class="description">Extra saus untuk menemani pesananmu</p>
             <p class="price">Rp 3.000</p>
           </div>
+          <img src="images/smokerika.png" alt="Smokerika Sauce" class="menu-icon">
         </div>
         <div class="item-controls">
           <div class="quantity-control">
@@ -218,6 +224,7 @@
     <input type="hidden" name="alamat"         id="alamatInput">
     <input type="hidden" name="catatan"        id="catatanInput">
     <input type="hidden" name="opsiPengiriman" id="opsiPengirimanInput">
+    <input type="hidden" name="kelurahan"     id="kelurahanInput">
 
     <input type="hidden" name="hotClassicOri"  id="hotClassicOriInput"  value="0">
     <input type="hidden" name="hotClassicLvl1" id="hotClassicLvl1Input" value="0">
@@ -289,9 +296,13 @@
         document.body.appendChild(script);
       }
 
-      // Tunggu scriptorder.js selesai load dulu baru checkStock
-      // supaya variabel TOKEN sudah tersedia
       window.addEventListener("load", function() {
+        // ?dev di URL = skip stock check, langsung tutup overlay
+        if (new URLSearchParams(window.location.search).has("dev")) {
+          var overlay = document.getElementById("stockCheckOverlay");
+          if (overlay) overlay.style.display = "none";
+          return;
+        }
         checkStock();
         setInterval(checkStock, 30000);
       });

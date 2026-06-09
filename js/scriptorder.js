@@ -99,6 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
         radio.addEventListener("change", (e) => {
             const label = e.target.closest(".delivery-option");
             deliveryFee = parseInt(label.dataset.fee || "0", 10);
+
+            const kelurahanGroup = document.getElementById("kelurahanGroup");
+            const kelurahanInput = document.getElementById("kelurahan");
+            if (e.target.value === "Deliv by Wraps") {
+                kelurahanGroup.style.display = "block";
+            } else {
+                kelurahanGroup.style.display = "none";
+                kelurahanInput.value = "";
+                kelurahanInput.classList.remove("input-error");
+            }
+
             updateSummary();
         });
     });
@@ -203,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("alamatInput").value       = document.getElementById("alamat").value;
         document.getElementById("catatanInput").value      = document.getElementById("catatan").value;
         document.getElementById("opsiPengirimanInput").value = getSelectedDelivery() || "";
+        document.getElementById("kelurahanInput").value    = document.getElementById("kelurahan").value;
     }
 
     function saveOrderToSession() {
@@ -210,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nama:              document.getElementById("nama").value,
             wa:                document.getElementById("whatsapp").value,
             alamat:            document.getElementById("alamat").value,
+            kelurahan:         document.getElementById("kelurahan").value,
             catatan:           document.getElementById("catatan").value,
             opsiPengiriman:    getSelectedDelivery(),
             deliveryFee:       deliveryFee,
@@ -259,10 +272,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!selectedDelivery) {
             hasMissing = true;
             deliveryEl.classList.add("delivery-error");
-            // Scroll ke sana supaya user langsung lihat
             deliveryEl.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
             deliveryEl.classList.remove("delivery-error");
+        }
+
+        const kelurahanInput = document.getElementById("kelurahan");
+        kelurahanInput.classList.remove("input-error");
+        if (selectedDelivery === "Deliv by Wraps" && !kelurahanInput.value.trim()) {
+            hasMissing = true;
+            kelurahanInput.classList.add("input-error");
         }
 
         if (totalItemsCount <= 0) hasMissing = true;

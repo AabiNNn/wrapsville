@@ -75,12 +75,12 @@ body {
   .navbar .logo { height: 60px; }
   .navbar .logo-text { height: 35px; }
   .navbar nav ul { margin-right: 30px; gap: 10px; }
-  .navbar nav ul li a { font-size: 1.5rem; padding: 3px 8px; }
+  .navbar nav ul li a { font-size: 0.85rem; letter-spacing: 1px; padding: 3px 8px; }
 }
 
 @media (max-width: 768px) {
   .navbar nav ul { justify-content: flex-start; gap: 3px; }
-  .navbar nav ul li a { font-size: 1rem; padding: 2px 6px; }
+  .navbar nav ul li a { font-size: 0.85rem; letter-spacing: 0.5px; padding: 2px 6px; }
   .navbar .logo { height: 45px; }
   .navbar .logo-text { height: 22px; }
 }
@@ -133,11 +133,13 @@ body {
 
 .btn-order {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 13px 32px;
   background-color: #fff;
   color: #ed0100;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
   border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -480,7 +482,8 @@ footer .social-icon:hover {
   }
 
   .btn-order {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    letter-spacing: 2.5px;
   }
 }
 
