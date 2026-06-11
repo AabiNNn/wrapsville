@@ -54,10 +54,20 @@
                 <input type="radio" name="opsiPengiriman" value="Deliv by Wraps" required>
                 <div class="delivery-card">
                     <div class="delivery-info">
-                        <strong>Deliv by Wraps</strong>
+                        <strong>Deliv by Wraps (Radius 4km Dari Kampus C Unair)</strong>
                         <small>Jarak maks. 4km dari Unair Kampus C · Start pengantaran jam 13.00 WIB</small>
                     </div>
                     <span class="delivery-fee">+Rp 4.000</span>
+                </div>
+            </label>
+            <label class="delivery-option disabled" id="freeOngkirOption" data-fee="0">
+                <input type="radio" name="opsiPengiriman" value="Deliv by Wraps (Free Ongkir)" disabled>
+                <div class="delivery-card">
+                    <div class="delivery-info">
+                        <strong>Deliv by Wraps (Free Ongkir)</strong>
+                        <small class="free-ongkir-req">Khusus pesanan lebih dari 6 pcs</small>
+                    </div>
+                    <span class="delivery-fee">Gratis</span>
                 </div>
             </label>
             <label class="delivery-option" data-fee="0">
@@ -256,44 +266,60 @@
     (function() {
       var APPS_SCRIPT_URL = document.getElementById("orderForm").action;
 
-      function checkStock() {
+
+      // isInitial: true = cek pertama saat load, false = cek periodik (silent)
+      function checkStock(isInitial) {
         var old = document.getElementById("jsonp-stock");
         if (old) old.remove();
 
-        // TOKEN sudah di-set oleh scriptorder.js (var global)
         var token = (typeof TOKEN !== "undefined") ? TOKEN : "";
-        var callbackName = "wsStockCallback_" + Date.now();
-        var timeoutId;
+        var retryCount = 0;
 
-        window[callbackName] = function(data) {
-          clearTimeout(timeoutId);
-          var overlay = document.getElementById("stockCheckOverlay");
-          if (overlay) overlay.style.display = "none";
-          if (data.status === "closed" || data.status === "error") {
-            window.location.href = "closed.html";
-          }
-          delete window[callbackName];
-        };
+        function attempt() {
+          var callbackName = "wsStockCallback_" + Date.now();
+          var timeoutId;
 
-        // Timeout 8 detik — kalau tidak ada response, anggap closed (aman)
-        timeoutId = setTimeout(function() {
-          if (window[callbackName]) {
+          window[callbackName] = function(data) {
+            clearTimeout(timeoutId);
+            var overlay = document.getElementById("stockCheckOverlay");
+            if (overlay) overlay.style.display = "none";
+            if (data.status === "closed" || data.status === "error") {
+              window.location.href = "closed.html";
+            }
             delete window[callbackName];
-            // Tidak bisa konfirmasi status → redirect ke closed untuk keamanan
-            window.location.href = "closed.html";
-          }
-        }, 8000);
+          };
 
-        var script = document.createElement("script");
-        script.id  = "jsonp-stock";
-        script.src = APPS_SCRIPT_URL + "?token=" + encodeURIComponent(token) + "&callback=" + callbackName;
-        script.onerror = function() {
-          clearTimeout(timeoutId);
-          delete window[callbackName];
-          // Script error → tidak bisa konfirmasi → closed
-          window.location.href = "closed.html";
-        };
-        document.body.appendChild(script);
+          timeoutId = setTimeout(function() {
+            if (!window[callbackName]) return;
+            delete window[callbackName];
+            retryCount++;
+            if (retryCount < 3) {
+              attempt();
+            } else if (isInitial) {
+              // Setelah 3x gagal, tampilkan pesan error + tombol retry
+              // Jangan redirect ke closed — bisa jadi cuma masalah koneksi
+              window.location.href = "closed.html";
+            }
+          }, 8000);
+
+          var script = document.createElement("script");
+          script.id  = "jsonp-stock";
+          script.src = APPS_SCRIPT_URL + "?token=" + encodeURIComponent(token) + "&callback=" + callbackName;
+          script.onerror = function() {
+            clearTimeout(timeoutId);
+            if (!window[callbackName]) return;
+            delete window[callbackName];
+            retryCount++;
+            if (retryCount < 3) {
+              attempt();
+            } else if (isInitial) {
+              window.location.href = "closed.html";
+            }
+          };
+          document.body.appendChild(script);
+        }
+
+        attempt();
       }
 
       window.addEventListener("load", function() {
@@ -303,8 +329,8 @@
           if (overlay) overlay.style.display = "none";
           return;
         }
-        checkStock();
-        setInterval(checkStock, 30000);
+        checkStock(true);
+        setInterval(function() { checkStock(false); }, 30000);
       });
     })();
   </script>

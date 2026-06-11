@@ -174,6 +174,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         totalItemsCount = totalItems;
+
+        // Enable/disable opsi Free Ongkir berdasarkan total item
+        const freeOngkirOption = document.getElementById("freeOngkirOption");
+        const freeOngkirRadio  = freeOngkirOption ? freeOngkirOption.querySelector('input[type="radio"]') : null;
+        if (freeOngkirOption && freeOngkirRadio) {
+            if (totalItems > 6) {
+                freeOngkirOption.classList.remove("disabled");
+                freeOngkirRadio.disabled = false;
+            } else {
+                freeOngkirOption.classList.add("disabled");
+                freeOngkirRadio.disabled = true;
+                if (freeOngkirRadio.checked) {
+                    freeOngkirRadio.checked = false;
+                    deliveryFee = 0;
+                }
+            }
+        }
+
         const totalPrice = menuPrice + deliveryFee + sauceFee;
 
         totalPesananEl.textContent = `${totalItems} pcs`;

@@ -8,6 +8,12 @@
 </head>
 <body>
 
+  <!-- Splash Screen -->
+  <div id="splashScreen">
+    <img src="images/logowrapsville.png" alt="Wrapsville Logo" id="splashLogo">
+    <img src="images/Wrapsvilles.png" alt="Wrap ur hunger, Burn ur taste" id="splashTagline">
+  </div>
+
   <!-- Navbar -->
 <header class="navbar">
   <div class="container">
@@ -17,8 +23,14 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="order.html">ORDER</a></li>
+        <li>
+            <a href="order.html" class="navbar-cart-btn" title="Order">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+              </svg>
+            </a>
+          </li>
       </ul>
     </nav>
   </div>
@@ -51,9 +63,10 @@
   </div>
 
   <div class="about-text">
+    <a href="about.html" class="btn-aboutus">Get to Know About Us →</a>
     <h2>Apa yang Kami Jual</h2>
     <p>
-      Kami menyediakan Nashville Chicken Wraps dengan pedas sesuai selera and freshly made everyday. 
+      Kami menyediakan Nashville Chicken Wraps dengan pedas sesuai selera and freshly made every batch. 
       Pilih menu, tentukan level pedas, bayar via QR, dan tunggu pesananmu sampai rumah!
     </p>
   </div>
@@ -91,6 +104,20 @@
   </section>
 </footer>
 
-   <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    (function () {
+      var splash = document.getElementById("splashScreen");
+      if (sessionStorage.getItem("splashShown")) {
+        splash.style.display = "none";
+        return;
+      }
+      sessionStorage.setItem("splashShown", "1");
+      setTimeout(function () {
+        splash.classList.add("splash-fade-out");
+        setTimeout(function () { splash.style.display = "none"; }, 600);
+      }, 1800);
+    })();
+  </script>
 </body>
 </html>

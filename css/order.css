@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
 /* Reset & Basic Styling */
 * {
     box-sizing: border-box;
@@ -6,7 +8,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #ed0100;
     color: #333;
     line-height: 1.6;
@@ -451,6 +453,22 @@ input, textarea {
     font-size: 0.8rem;
     color: #888;
     line-height: 1.4;
+}
+
+.free-ongkir-req {
+    font-size: 0.78rem;
+    color: #27ae60 !important;
+    font-weight: 600;
+}
+
+.delivery-option.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.delivery-option.disabled .delivery-card {
+    background: #f5f5f5;
 }
 
 .delivery-fee {

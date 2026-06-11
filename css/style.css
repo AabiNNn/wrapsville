@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
 @font-face {
   font-family: 'beautifreak';
   src: url('../fonts/beautifreak.otf') format('opentype');
@@ -18,6 +20,47 @@ body {
   line-height: 1.5;
 }
 
+/* ===== Splash Screen ===== */
+#splashScreen {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+#splashScreen.splash-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#splashLogo {
+  width: 180px;
+  height: auto;
+  animation: splashPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+#splashTagline {
+  width: 220px;
+  height: auto;
+  animation: splashFadeUp 0.5s ease 0.25s both;
+}
+
+@keyframes splashPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes splashFadeUp {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
 /* ===== Navbar ===== */
 .navbar {
   background-color: #fff;
@@ -26,7 +69,8 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 0 0 20px 20px;
 }
 
 .navbar .container {
@@ -67,6 +111,25 @@ body {
 
 .navbar nav ul li a:hover {
   background-color: #f2f2f2;
+}
+
+.navbar-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d33;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.navbar-cart-btn:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar-cart-btn svg {
+  display: block;
 }
 
 /* ===== Tweak Responsive Navbar (letakkan setelah definisi di atas) ===== */
@@ -131,22 +194,64 @@ body {
     }
 }
 
+.btn-aboutus {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 8px 20px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-aboutus:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: #fff;
+}
+
 .btn-order {
   display: inline-block;
-  padding: 13px 32px;
-  background-color: #fff;
+  padding: 14px 40px;
+  background: #fff;
   color: #ed0100;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 2px;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
+  letter-spacing: 1.5px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  transition: transform 0.25s, box-shadow 0.25s, background 0.3s, color 0.3s;
+}
+
+/* Shimmer sweep */
+.btn-order::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+  transition: left 0.55s ease;
 }
 
 .btn-order:hover {
-  background-color: #ed0100;
+  background: #ed0100;
   color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 8px 28px rgba(237,1,0,0.4);
+}
+
+.btn-order:hover::after {
+  left: 150%;
 }
 
 /* ===== About Section ===== */
