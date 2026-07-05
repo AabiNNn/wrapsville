@@ -10,9 +10,11 @@
 
 :root {
   --red: #ed0100;
+  --red-bright: #f52011;
   --red-dark: #c40100;
   --red-deep: #a30000;
   --yellow: #ffcd0f;
+  --cream: #fff6e8;
   --white: #ffffff;
 }
 
@@ -29,12 +31,19 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--red);
+  background-image: linear-gradient(180deg, var(--red-bright) 0%, var(--red) 26%, #d80100 100%);
   color: #fff;
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--yellow);
+  color: #7a0000;
 }
 
 main {
@@ -86,15 +95,16 @@ main {
 .navbar {
   background-color: #fff;
   color: #d33;
-  padding: 12px 16px;
+  padding: 10px 18px;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 
 .navbar .container {
+  max-width: 1080px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,42 +120,62 @@ main {
   height: 50px;
 }
 
-.navbar .logo-text {
-  height: 25px;
+/* Wordmark "Wrapsville" sebagai teks asli (bukan gambar) supaya selalu tajam */
+.logo-wordmark {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  color: #fff;
+  background: var(--red);
+  padding: 1px 12px 3px;
+  border-radius: 7px;
+  display: inline-block;
+  transform: rotate(-2deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  user-select: none;
+}
+
+.logo-wordmark span {
+  color: var(--yellow);
 }
 
 .navbar nav ul {
   list-style: none;
   display: flex;
-  gap: 3px;
+  align-items: center;
+  gap: 6px;
 }
 
-.navbar nav ul li a {
+.navbar-link {
   text-decoration: none;
-  color: #d33;
-  font-weight: bold;
-  padding: 1px 5px;
-  border-radius: 6px;
-  transition: background 0.3s;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-radius: 50px;
+  transition: background 0.2s;
 }
 
-.navbar nav ul li a:hover {
-  background-color: #f2f2f2;
+.navbar-link:hover {
+  background: #fdeaea;
 }
 
 .navbar-cart-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #d33;
-  padding: 6px;
-  border-radius: 8px;
+  color: var(--red);
+  padding: 8px;
+  border-radius: 50%;
   transition: background 0.2s, transform 0.2s;
   text-decoration: none;
 }
 
 .navbar-cart-btn:hover {
-  background-color: #f2f2f2;
+  background-color: #fdeaea;
   transform: scale(1.08);
 }
 
@@ -154,15 +184,13 @@ main {
 }
 
 @media (min-width: 769px) {
-  .logo-wrapper { margin-left: 30px; }
   .navbar .logo { height: 60px; }
-  .navbar .logo-text { height: 35px; }
-  .navbar nav ul { margin-right: 30px; gap: 10px; }
+  .logo-wordmark { font-size: 1.5rem; }
 }
 
 @media (max-width: 768px) {
   .navbar .logo { height: 45px; }
-  .navbar .logo-text { height: 22px; }
+  .logo-wordmark { font-size: 1.12rem; }
 }
 
 /* ===== Hero ===== */
@@ -271,16 +299,12 @@ main {
   animation: float 4.5s ease-in-out infinite;
 }
 
-.hero-wrap.left  { left: max(1vw, 8px); }
-.hero-wrap.right { right: max(1vw, 8px); animation-delay: 2.2s; }
+.hero-wrap.left  { left: -4px; }
+.hero-wrap.right { right: -4px; animation-delay: 2.2s; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-12px); }
-}
-
-@media (max-width: 640px) {
-  .hero-wrap { width: 84px; bottom: -14px; }
 }
 
 /* ===== Marquee ticker ===== */
@@ -340,6 +364,12 @@ main {
   font-weight: 400;
   line-height: 1.15;
   margin-bottom: 14px;
+}
+
+.section-head h2 span,
+.level-text h2 span,
+.cta-band h2 span {
+  color: var(--yellow);
 }
 
 .section-head p {
@@ -549,7 +579,7 @@ main {
   border-color: #fff;
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive (tablet) ===== */
 @media (max-width: 768px) {
   .menu {
     padding: 56px 20px 20px;
@@ -576,11 +606,142 @@ main {
   }
 }
 
+/* ===== Responsive (mobile) ===== */
+@media (max-width: 640px) {
+
+  /* Hero: lebih ringkas, CTA jadi tombol besar yang gampang dipencet */
+  .hero {
+    min-height: 0;
+    padding: 60px 22px 108px;
+  }
+
+  .hero-kicker {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+  }
+
+  .hero-sub {
+    font-size: 0.92rem;
+    margin: 16px auto 26px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-cta .btn-order {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 16px 40px;
+    font-size: 1rem;
+  }
+
+  .hero-cta .btn-ghost {
+    font-size: 0.84rem;
+    padding: 10px 20px;
+  }
+
+  .hero-wrap {
+    width: 90px;
+    bottom: -10px;
+  }
+
+  .marquee {
+    padding: 8px 0;
+  }
+
+  .marquee-track {
+    font-size: 0.92rem;
+  }
+
+  /* Menu: kartu horizontal ala food app — ringkas & rapi di layar sempit */
+  .menu {
+    padding: 52px 18px 14px;
+  }
+
+  .menu-grid {
+    gap: 14px;
+  }
+
+  .menu-card {
+    display: grid;
+    grid-template-columns: 1fr 104px;
+    grid-template-areas:
+      "title img"
+      "desc  img"
+      "link  img";
+    align-items: center;
+    column-gap: 14px;
+    text-align: left;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .menu-card:hover {
+    transform: none;
+  }
+
+  .menu-card-img {
+    grid-area: img;
+    height: auto;
+    margin: 0;
+  }
+
+  .menu-card-img img {
+    max-width: 104px;
+  }
+
+  .menu-card h3 {
+    grid-area: title;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .menu-card p {
+    grid-area: desc;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .menu-card-link {
+    grid-area: link;
+    justify-self: start;
+    font-size: 0.74rem;
+  }
+
+  .section-head {
+    margin-bottom: 26px;
+  }
+
+  .section-head p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .level-text p {
+    font-size: 0.92rem;
+  }
+
+  .cta-band {
+    margin: 24px 16px 56px;
+    padding: 40px 22px;
+    border-radius: 22px;
+  }
+
+  .cta-band .btn-order {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px 40px;
+  }
+}
+
 /* ===== Footer ===== */
 footer {
-  padding: 36px 20px 22px;
+  padding: 40px 20px 24px;
   text-align: center;
-  background-color: var(--red-deep);
+  background: linear-gradient(180deg, var(--red-deep), #8d0000);
   border-radius: 22px 22px 0 0;
   box-shadow: 0 -6px 20px rgba(0,0,0,0.15);
 }
@@ -588,18 +749,20 @@ footer {
 .footer-logo {
   width: 56px;
   height: auto;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .footer-tagline {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: 'beautifreak', 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
   color: var(--yellow);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 footer .contact {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 footer .contact a {
@@ -608,7 +771,7 @@ footer .contact a {
 }
 
 footer .social-icon {
-  width: 32px;
+  width: 34px;
   height: auto;
   vertical-align: middle;
   transition: transform 0.3s;
